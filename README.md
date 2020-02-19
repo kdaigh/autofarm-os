@@ -20,3 +20,7 @@ After completing the installation, following the instructions on the [Nanpy Repo
 Run the **blinky** test using the command
 
     python2 blinky.py
+
+See a basic prototype reading of the liquid level sensor data with the command
+
+    python2 liquid_level.py
