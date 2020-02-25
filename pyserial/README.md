@@ -6,9 +6,11 @@ First, you'll need to install setuptools for python, using the command
 
     python -m pip install --upgrade pip setuptools wheel
 
-Additionally, you'll need to install the PySerial library with the command
+Additionally, you'll need to install the PySerial library with the commands
 
-    pip install pyserial
+    sudo apt-get install python-serial
+
+    sudo pip install pyserial
 
 ## Examples
 ### Blinky Example
