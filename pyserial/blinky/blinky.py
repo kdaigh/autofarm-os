@@ -12,7 +12,7 @@ time.sleep(5)
 
 # Send encoded "3" to Arduino
 num_blinks = "3"
-ser.write(bytes(num.encode("ascii")))
+ser.write(bytes(num_blinks.encode("ascii")))
 
 # Close serial port
 ser.close()
