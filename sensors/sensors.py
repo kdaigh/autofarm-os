@@ -12,7 +12,7 @@ class SerialPort:
 
     def __init__(self, port):
         self.port = port
-        self.serial = serial.Serial(port, self.BAUDRATE, self.TIMEOUT)
+        self.serial = serial.Serial(port, self.BAUDRATE)
         self.log("Serial port " + self.port + " opened")
 
         if self.pingArduino() == True:
