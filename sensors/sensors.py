@@ -77,6 +77,6 @@ class SerialPort:
 #     ser.close()
 
 if __name__ == '__main__':
-    ard = SerialPort('/dev/serial1')
+    ard = SerialPort('/dev/serial0')
     ard_read = ard.readSensor()
     print(ard_read)
