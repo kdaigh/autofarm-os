@@ -22,7 +22,7 @@ class SerialPort:
     def pingArduino(self):
         self.log("Verifying system")
         self.serial.flushInput()
-        send = self.PING.encode("ascii"))
+        send = self.PING.encode("ascii")
         self.serial.write(send)
         self.log("Pi sent ping " + str(send))
         reply = self.serial.read(1)
