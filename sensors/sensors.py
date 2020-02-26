@@ -29,11 +29,11 @@ class SerialPort:
         return True
     
     def readFromArduino(self):
-        msg = self.port.readline()
+        msg = self.serial.readline()
         return msg.rstrip()
 
     def readSensor(self):
-        self.port.write(self.READ)
+        self.serial.write(self.READ)
         sensor_read = self.readFromArduino()
         assert(sensor_read.endswith(self.END_CHAR))
         return float(sensor_read.rstrip(self.END_CHAR))
