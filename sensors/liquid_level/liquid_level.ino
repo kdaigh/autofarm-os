@@ -28,10 +28,10 @@ void setup()
 void loop() 
 {
     // Verify that serial port is available
-    if(Serial.available() <= 0)
-    {
-        return;
-    }
+    // if(Serial.available() <= 0)
+    // {
+    //     return;
+    // }
         
     unsigned in = Serial.read();
     switch(in)
