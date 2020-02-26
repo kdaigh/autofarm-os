@@ -31,6 +31,7 @@ void loop()
     while(Serial.available() > 0)
     {
         unsigned in = Serial.read();
+        printf("Arduino received ping %d", in);
         switch(in)
         {
             // VERIFY WITH PI
@@ -42,7 +43,6 @@ void loop()
                 readLiquidLevelSensor();
                 break;
             default:
-                Serial.write("Unknown command: ");
                 Serial.write(in);
                 break;
         }
