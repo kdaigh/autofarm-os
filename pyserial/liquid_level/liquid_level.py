@@ -14,12 +14,8 @@ print("Serial port " + serPort + " opened  Baudrate " + str(baudRate))
 time.sleep(1)
 
 # Read input from liquid level sensor via Arduino
-GPIO.input(liquid_level_pin)
-time.sleep(1)
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(liquid_level_pin, GPIO.IN)
-# read_ser = ser.readline()
-# print(read_ser)
+read_ser = ser.readline()
+print(read_ser)
 
 # Close serial port
 ser.close()
