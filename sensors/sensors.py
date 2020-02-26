@@ -21,14 +21,17 @@ time.sleep(1)
 # Read input from liquid level sensor via Arduino
 liquid_level_read = liquid_level_ser.readline()
 print(liquid_level_read)
+time.sleep(1)
 
 # Read input from ph sensor via Arduino
 ph_read = ph_ser.readline()
 print(ph_read)
+time.sleep(1)
 
 # Read input from Hygrometer via Arduino
 hygrometer_read = hygrometer_ser.readline()
 print(hygrometer_read)
+time.sleep(1)
 
 # Close serial port
 liquid_level_ser.close()
