@@ -32,14 +32,11 @@ void loop()
 {
     float humd = sht20.readHumidity();                  // Read Humidity
     float temp = sht20.readTemperature();               // Read Temperature
-    Serial.print("time=");
-    Serial.print(millis());
-    Serial.print(" temperature=");
-    Serial.print(temp, 1);
-    Serial.print("°C");
-    Serial.print(" humidity=");
+    // Serial.print("time=" + millis());
+    Serial.print("temperature=");
+    Serial.println(temp, 1);
+    Serial.print("°C humidity=");
     Serial.print(humd, 2);
-    Serial.print("%");
-    Serial.println();
+    Serial.println("%");
     delay(1000);
 }
