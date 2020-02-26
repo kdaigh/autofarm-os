@@ -26,7 +26,7 @@ class SerialPort:
     # Returns true if Arduino responds to ping; False, otherwise.
     def pingArduino(self):
         self.log("Verifying system")
-        self.serial.flushInput()
+        # self.serial.flushInput()
         self.serial.write(self.PING.encode("ascii"))
         reply = self.serial.read(1)
         if len(reply) < 1: 
@@ -72,6 +72,6 @@ class SerialPort:
 #     ser.close()
 
 if __name__ == '__main__':
-    ard = SerialPort("/dev/serial0")
+    ard = SerialPort('/dev/ttyACM0')
     ard_read = ard.readSensor()
     print(ard_read)

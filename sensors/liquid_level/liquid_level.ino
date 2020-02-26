@@ -32,7 +32,7 @@ void loop()
         return;
     }
         
-    char in = Serial.read();
+    char in = Serial.read(1);
     switch(in)
     {
         // VERIFY WITH PI
