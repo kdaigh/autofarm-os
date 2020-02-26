@@ -30,7 +30,7 @@ class SerialPort:
         # while self.serial.inWaiting() != 0:
         #     pass
         self.serial.write(self.PING.encode("ascii"))
-        reply = self.serial.read(1)
+        reply = self.serial.read(1).decode()
         if len(reply) < 1: 
             self.log("No reply from port: " + str(self.port))
             return False
