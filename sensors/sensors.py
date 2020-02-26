@@ -23,7 +23,7 @@ class SerialPort:
         self.log("Verifying system")
         self.serial.flushInput()
         send = self.PING.encode("ascii")
-        self.serial.write(send)
+        self.serial.write(b'P')
         self.log("Pi sent ping " + str(send))
         reply = self.serial.read(1)
         if len(reply) < 1: 
