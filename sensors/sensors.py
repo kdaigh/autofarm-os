@@ -38,13 +38,8 @@ class SerialPort:
             self.log("Unexpected reply from Arduino: " + str(reply))
             return True
         return True
-    
-    def encodeString(self, msg):
-        msgLen = chr(len(msg))
 
-
-
-    def decodeString(self):
+    def readFromArduino(self):
         msg = self.serial.readline()
         return msg.rstrip()
 
