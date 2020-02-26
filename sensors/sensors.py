@@ -1,39 +1,67 @@
 import serial
 import time
 
-liquid_level_pin = 5
+class SerialPort:
+    BAUDRATE = 9600
+    TIMEOUT = 5
+    DEBUG = True
+    PING = 'P'
+    PING_REPLY = 'A'
+    READ = 'R'
+    END_CHAR = 'E'
+
+    def __init__(self, port):
+        self.port = port
+        self.serial = serial.Serial(port, self.BAUDRATE, self.TIMEOUT)
+        self.log("Serial port " + self.port + " opened")
+
+    # Returns true if Arduino responds to ping; False, otherwise.
+    def pingArduino(self):
+        self.serial.flushInput()
+        self.serial.write(self.PING)
+        reply = self.serial.read(1)
+        if len(reply) < 1: 
+            self.log("No reply from port: " + str(self.port))
+            return False
+        if reply != self.PING_REPLY:
+            self.log("Unexpected reply from Arduino: " + reply)
+            return True
+        return True
+    
+    def readFromArduino(self):
+        msg = self.port.readline()
+        return msg.rstrip()
+
+    def readSensor(self):
+        self.port.write(self.READ)
+        sensor_read = self.readFromArduino()
+        assert(sensor_read.endswith(self.END_CHAR))
+        return float(sensor_read.rstrip(self.END_CHAR))
+
+    # Prints given message if debug is enabled
+    def log(self, msg):
+        if self.DEBUG == True:
+            print(msg)
 
 # Open serial port
-liquid_level_port = '/dev/ttyACM0'
-ph_port = '/dev/ttyACM1'
-hygrometer_port = '/dev/ttyACM2'
-baudRate = 9600
-liquid_level_ser = serial.Serial(liquid_level_port, baudRate)
-print("Liquid_level: Serial port " + liquid_level_port + " opened  Baudrate " + str(baudRate))
-ph_ser = serial.Serial(ph_port, baudRate)
-print("PH: Serial port " + ph_port + " opened  Baudrate " + str(baudRate))
-hygrometer_ser = serial.Serial(hygrometer_port, baudRate)
-print("Hygrometer: Serial port " + hygrometer_port + " opened  Baudrate " + str(baudRate))
+# arduino_ports = ['/dev/ttyACM0','/dev/ttyACM1','/dev/ttyACM2']
+# baudRate = 9600
 
 # Wait for Arduino
-time.sleep(1)
+# TODO
 
-# Read input from liquid level sensor via Arduino
-liquid_level_read = liquid_level_ser.readline()
-print(liquid_level_read)
-time.sleep(1)
+# For each port, read input from sensor(s)
+# for port in arduino_ports:
+#     # Open port
+#     ser = serial.Serial(port, baudRate)
+#     print("Serial port " + port + " opened; Baudrate " + str(baudRate))
 
-# Read input from ph sensor via Arduino
-ph_read = ph_ser.readline()
-print(ph_read)
-time.sleep(1)
+#     # Read data and print to terminal
+#     read_ser = ser.readline()
+#     print(read_ser)
+#     ser.close()
 
-# Read input from Hygrometer via Arduino
-hygrometer_read = hygrometer_ser.readline()
-print(hygrometer_read)
-time.sleep(1)
-
-# Close serial port
-liquid_level_ser.close()
-ph_ser.close()
-hygrometer_ser.close()
+if __name__ == '__main__':
+    ard = SerialPort("/dev/ttyAMA0")
+    ard_read = ard.readSensor()
+    print(ard_read)

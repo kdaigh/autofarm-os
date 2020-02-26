@@ -12,17 +12,49 @@
 * All above must be included in any redistribution
 * ********************************************************/
 
-const int liquid_level_sensor_pin = 5;        //added
-int liquid_level = 0;
+#define PING 'P'
+#define PING_REPLY 'A'
+#define READ 'R'
+#define END_CHAR 'E'
 
-void setup() {
-    Serial.begin(9600);
+const int liquid_level_sensor_pin = 5;
+
+void setup() 
+{
     pinMode(liquid_level_sensor_pin, INPUT);
+    Serial.begin(9600);
 }
 
-void loop() {
-    liquid_level = digitalRead(5);
+void loop() 
+{
+    // While serial port is available
+    while(Serial.available() > 0)
+    {
+        unsigned in = Serial.read();
+        switch(in)
+        {
+            // VERIFY WITH PI
+            case PING:
+                serial.write(PING REPLY);
+                break;
+            // READ SENSOR
+            case READ:
+                readSensor();
+                break;
+            default:
+                Serial.write("Unknown command: ");
+                Serial.write(in);
+                break;
+        }
+        delay(500);
+    }
+}
+
+void readLiquidLevelSensor()
+{
+    int liquid_level = 0;
+    liquid_level = digitalRead(liquid_level_sensor_pin);
     Serial.print("liquid_level= ");
-    Serial.println(liquid_level, DEC);
-    delay(500);
+    Serial.print(liquid_level, DEC);
+    Serial.println(END_CHAR);
 }
