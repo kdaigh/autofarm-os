@@ -40,7 +40,7 @@ void loop()
     avgValue+=buf[i];
   float phValue=(float)avgValue*5.0/1024/6; //convert the analog into millivolt
   phValue=3.5*phValue;                      //convert the millivolt into pH value
-  Serial.print("pH=");  
-  Serial.print(phValue,2);
-  Serial.println(" ");
+    Serial.print("ph= ");
+    Serial.println(phValue, DEC);
+    delay(500);
 }
