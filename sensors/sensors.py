@@ -15,6 +15,10 @@ class SerialPort:
         self.serial = serial.Serial(port, self.BAUDRATE)
         self.log("Serial port " + self.port + " opened")
 
+
+        if self.serial.is_open() == True:
+            self.log("Port is open")
+
         if self.pingArduino() == True:
             self.log("System ready")
 
