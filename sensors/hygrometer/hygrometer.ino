@@ -1,5 +1,3 @@
-#include <DFRobot_SHT20.h>
-
 /*!
  * @file  DFRobot_SHT20_test.ino
  * @brief DFRobot's SHT20 Humidity And Temperature Sensor Module
