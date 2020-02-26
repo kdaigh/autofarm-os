@@ -21,7 +21,7 @@ class SerialPort:
     # Returns true if Arduino responds to ping; False, otherwise.
     def pingArduino(self):
         self.serial.flushInput()
-        self.serial.write(self.PING)
+        self.serial.write("P")
         reply = self.serial.read(1)
         if len(reply) < 1: 
             self.log("No reply from port: " + str(self.port))
