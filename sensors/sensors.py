@@ -16,10 +16,11 @@ class SerialPort:
         self.log("Serial port " + self.port + " opened")
 
         if self.pingArduino() == True:
-            self.log("System ready.")
+            self.log("System ready")
 
     # Returns true if Arduino responds to ping; False, otherwise.
     def pingArduino(self):
+        self.log("Verifying system")
         self.serial.flushInput()
         self.serial.write(self.PING.encode())
         reply = self.serial.read(1)
@@ -36,6 +37,7 @@ class SerialPort:
         return msg.rstrip()
 
     def readSensor(self):
+        self.log("Attempting to read data from sensor")
         self.serial.write(self.READ.encode())
         sensor_read = self.readFromArduino()
         assert(sensor_read.endswith(self.END_CHAR))
