@@ -12,7 +12,7 @@ liquid_level_ser = serial.Serial(liquid_level_port, baudRate)
 print("Liquid_level: Serial port " + liquid_level_port + " opened  Baudrate " + str(baudRate))
 ph_ser = serial.Serial(ph_port, baudRate)
 print("PH: Serial port " + ph_port + " opened  Baudrate " + str(baudRate))
-hygrometer_ser = serial.Serial(ph_port, baudRate)
+hygrometer_ser = serial.Serial(hygrometer_port, baudRate)
 print("Hygrometer: Serial port " + hygrometer_port + " opened  Baudrate " + str(baudRate))
 
 # Wait for Arduino
