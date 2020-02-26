@@ -27,27 +27,28 @@ void setup()
 
 void loop() 
 {
-    // While serial port is available
-    while(Serial.available() > 0)
+    // Verify that serial port is available
+    if(Serial.available() <= 0)
     {
-        unsigned in = Serial.read();
-        printf("Arduino received ping %d", in);
-        switch(in)
-        {
-            // VERIFY WITH PI
-            case PING:
-                Serial.write(PING_REPLY);
-                break;
-            // READ SENSOR
-            case READ:
-                readLiquidLevelSensor();
-                break;
-            default:
-                Serial.write(in);
-                break;
-        }
-        delay(500);
+        return;
     }
+        
+    unsigned in = Serial.read();
+    switch(in)
+    {
+        // VERIFY WITH PI
+        case PING:
+            Serial.write(PING_REPLY);
+            break;
+        // READ SENSOR
+        case READ:
+            readLiquidLevelSensor();
+            break;
+        default:
+            Serial.write(in);
+            break;
+    }
+    delay(500);
 }
 
 void readLiquidLevelSensor()

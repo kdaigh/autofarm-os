@@ -18,8 +18,8 @@ class SerialPort:
         if self.serial.is_open == True:
             self.log("Port is open")
 
-        # if self.pingArduino() == True:
-        #     self.log("System ready")
+        if self.pingArduino() == True:
+            self.log("System ready")
 
     # Returns true if Arduino responds to ping; False, otherwise.
     def pingArduino(self):
