@@ -25,9 +25,7 @@ class SerialPort:
     def pingArduino(self):
         self.log("Verifying system")
         self.serial.flushInput()
-        send = self.PING.encode("ascii")
-        self.serial.write(b'P')
-        self.log("Pi sent ping " + str(send))
+        self.serial.write(self.PING.encode("ascii"))
         reply = self.serial.read(1)
         if len(reply) < 1: 
             self.log("No reply from port: " + str(self.port))
@@ -72,6 +70,6 @@ class SerialPort:
 #     ser.close()
 
 if __name__ == '__main__':
-    ard = SerialPort("/dev/ttyAMA0")
+    ard = SerialPort("/dev/serial0")
     ard_read = ard.readSensor()
     print(ard_read)
