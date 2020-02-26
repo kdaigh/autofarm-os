@@ -5,15 +5,18 @@ class SerialPort:
     BAUDRATE = 9600
     TIMEOUT = 5
     DEBUG = True
-    PING = 'P'
-    PING_REPLY = 'A'
-    READ = 'R'
-    END_CHAR = 'E'
+    PING = "P"
+    PING_REPLY = "A"
+    READ = "R"
+    END_CHAR = "E"
 
     def __init__(self, port):
         self.port = port
         self.serial = serial.Serial(port, self.BAUDRATE, self.TIMEOUT)
         self.log("Serial port " + self.port + " opened")
+
+        if self.pingArduino() == True:
+            self.log("System ready.")
 
     # Returns true if Arduino responds to ping; False, otherwise.
     def pingArduino(self):
