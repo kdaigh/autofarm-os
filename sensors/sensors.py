@@ -37,7 +37,12 @@ class SerialPort:
             return True
         return True
     
-    def readFromArduino(self):
+    def encodeString(self, msg):
+        msgLen = chr(len(msg))
+
+
+
+    def decodeString(self):
         msg = self.serial.readline()
         return msg.rstrip()
 
@@ -72,6 +77,6 @@ class SerialPort:
 #     ser.close()
 
 if __name__ == '__main__':
-    ard = SerialPort('/dev/ttyACM0')
+    ard = SerialPort('/dev/serial1')
     ard_read = ard.readSensor()
     print(ard_read)
