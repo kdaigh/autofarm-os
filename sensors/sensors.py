@@ -20,7 +20,8 @@ liquid_level_read = liquid_level_ser.readline()
 print(liquid_level_read)
 
 # Read input from ph sensor via Arduino
-
+ph_read = ph_ser.readline()
+print(ph_read)
 
 # Close serial port
 liquid_level_ser.close()
