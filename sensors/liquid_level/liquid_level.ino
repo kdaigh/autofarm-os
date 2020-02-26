@@ -35,11 +35,11 @@ void loop()
         {
             // VERIFY WITH PI
             case PING:
-                serial.write(PING REPLY);
+                Serial.write(PING_REPLY);
                 break;
             // READ SENSOR
             case READ:
-                readSensor();
+                readLiquidLevelSensor();
                 break;
             default:
                 Serial.write("Unknown command: ");
