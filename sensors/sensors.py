@@ -16,7 +16,7 @@ class SerialPort:
         self.log("Serial port " + self.port + " opened")
 
 
-        if self.serial.is_open() == True:
+        if self.serial.is_open == True:
             self.log("Port is open")
 
         if self.pingArduino() == True:
