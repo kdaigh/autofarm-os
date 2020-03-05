@@ -27,8 +27,6 @@ class SerialPort:
     def pingArduino(self):
         self.log("Verifying system")
         self.serial.flushInput()
-        # while self.serial.inWaiting() != 0:
-        #     pass
         self.serial.write(self.PING.encode("ascii"))
         reply = self.serial.read(1).decode()
         if len(reply) < 1: 
@@ -47,6 +45,7 @@ class SerialPort:
         self.log("Attempting to read data from sensor")
         self.serial.write(self.READ.encode())
         sensor_read = self.readFromArduino()
+        self.log("Read: " + str(sensor_read))
         assert(sensor_read.endswith(self.END_CHAR.encode()))
         return float(sensor_read.rstrip(self.END_CHAR))
 
