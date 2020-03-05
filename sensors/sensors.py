@@ -45,6 +45,7 @@ class SerialPort:
         self.log("Attempting to read data from sensor")
         self.serial.write(self.READ.encode())
         sensor_read = self.readFromArduino()
+        self.log("Read: " + sensor_read)
         sensor_read = sensor_read.decode()
         self.log("Read: " + sensor_read)
         # assert(sensor_read.endswith(self.END_CHAR.encode()))
