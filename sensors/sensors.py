@@ -28,6 +28,7 @@ class SerialPort:
         self.log("Verifying system")
         self.serial.flushInput()
         self.serial.write(self.PING.encode("ascii"))
+        time.sleep(1)
         reply = self.serial.read(1).decode()
         if len(reply) < 1: 
             self.log("No reply from port: " + str(self.port))
@@ -45,7 +46,7 @@ class SerialPort:
         self.log("Attempting to read data from sensor")
         self.serial.write(self.READ.encode())
         sensor_read = self.readFromArduino()
-        self.log("Read: " + sensor_read)
+        self.log("Read: " + str(sensor_read))
         sensor_read = sensor_read.decode()
         self.log("Read: " + sensor_read)
         # assert(sensor_read.endswith(self.END_CHAR.encode()))
