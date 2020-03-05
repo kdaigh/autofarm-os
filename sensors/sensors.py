@@ -47,8 +47,8 @@ class SerialPort:
         sensor_read = self.readFromArduino()
         sensor_read = sensor_read.decode()
         self.log("Read: " + sensor_read)
-        assert(sensor_read.endswith(self.END_CHAR.encode()))
-        return float(sensor_read.rstrip(self.END_CHAR))
+        # assert(sensor_read.endswith(self.END_CHAR.encode()))
+        return sensor_read.rstrip(self.END_CHAR)
 
     # Prints given message if debug is enabled
     def log(self, msg):
