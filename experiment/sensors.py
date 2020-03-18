@@ -59,7 +59,7 @@ if __name__ == '__main__':
     output += liquidLevelPort.readFromArduino()
     liquidLevelPort.closePort()
 
-    phPort = SerialPort('/dev/ttyACM1', 9600)
+    phPort = SerialPort('/dev/ttyACM2', 9600)
     output += phPort.readFromArduino()
     phPort.closePort()
 
