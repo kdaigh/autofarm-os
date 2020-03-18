@@ -1,25 +1,36 @@
-import serial, string, time
+import serial
+import string
+import time
 
-# Open serial port
-serPort = '/dev/ttyACM0'
-baudRate = 9600
-ser = serial.Serial(serPort, baudRate)
-print("Serial port " + serPort + " opened  Baudrate " + str(baudRate))
+class SerialPort:
+    DEBUG = True
 
-#The following block of code works like this:
-#If serial data is present, read the line, decode the UTF8 data,
-#...remove the trailing end of line characters
-#...split the data into temperature and humidity
-#...remove the starting and ending pointers (< >)
-#...print the output
-while True:
-        if ser.in_waiting > 0:
-            rawserial = ser.readline()
-            cookedserial = rawserial.decode('utf-8').strip('\r\n')
-            # datasplit = cookedserial.split(',')
-            # temperature = datasplit[0].strip('<')
-            # humidity = datasplit[1].strip('>')
-            liquid_level = cookedserial.strip('<')
-            liquid_level = liquid_level.strip('>')
+    def __init__(self, port, baudrate):
+        self.port = port
+        self.baudrate = baudrate
+        self.serial = serial.Serial(port, self.baudrate)
+        self.log("Serial port " + self.port + " opened  Baudrate " + str(self.baudrate))
+
+
+    def readFromSensors(self):
+        if self.serial.in_waiting > 0:
+            rawInput = self.serial.readline()
+            decodedInput = rawInput.decode('utf-8').strip('\r\n')
+
+            liquid_level = self.parseLiquidLevel(decodedInput)
             print(liquid_level)
-            # print(humidity)
+    
+    # Parses input by stripping non-essential characters
+    def parseLiquidLevel(self, decodedInput):
+        parsedInput = decodedInput.strip('<')
+        parsedInput = decodedInput.strip('>')
+        return parsedInput
+
+    # Prints given message if debug is enabled
+    def log(self, msg):
+        if self.DEBUG == True:
+            print(msg)
+
+if __name__ == '__main__':
+    arduino = SerialPort('/dev/ttyACM0', 9600)
+    arduino.readFromSensors()
