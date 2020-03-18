@@ -21,9 +21,11 @@ class SerialPort:
         rawInput = self.serial.readline()
         data = self.parseFromArduino(rawInput)
         output = ""
-        for datum in data:
-            output += datum
-            output += ", "
+        for i in range(len(data)):
+            output += data[i]
+            if i < (len(data) - 1):
+                output += ", "
+
         return output
 
     # Parses input by stripping non-essential characters
@@ -56,13 +58,17 @@ if __name__ == '__main__':
     output = getTimestamp()
     output += ", "
 
-    liquidLevelPort = SerialPort('/dev/ttyACM0', 9600)
-    output += liquidLevelPort.readFromArduino()
-    liquidLevelPort.closePort()
+    # Open port ACM0
+    port = SerialPort('/dev/ttyACM0', 9600)
+    output += port.readFromArduino()
+    output += ", "
+    port.closePort()
 
-    phPort = SerialPort('/dev/ttyACM2', 9600)
-    output += phPort.readFromArduino()
-    phPort.closePort()
+    # Open port ACM2
+    port = SerialPort('/dev/ttyACM2', 9600)
+    output += port.readFromArduino()
+    output += ", "
+    port.closePort()
 
     print(output)
 
