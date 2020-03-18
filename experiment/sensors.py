@@ -13,12 +13,13 @@ class SerialPort:
 
 
     def readFromSensors(self):
-        if self.serial.in_waiting > 0:
-            rawInput = self.serial.readline()
-            decodedInput = rawInput.decode('utf-8').strip('\r\n')
+        while True:
+            if self.serial.in_waiting > 0:
+                rawInput = self.serial.readline()
+                decodedInput = rawInput.decode('utf-8').strip('\r\n')
 
-            liquid_level = self.parseLiquidLevel(decodedInput)
-            print(liquid_level)
+                liquid_level = self.parseLiquidLevel(decodedInput)
+                print(liquid_level)
     
     # Parses input by stripping non-essential characters
     def parseLiquidLevel(self, decodedInput):
