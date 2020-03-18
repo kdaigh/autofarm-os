@@ -9,4 +9,3 @@ while True:
     liquid_level = pin13.read()
     time.sleep(1)
     print("liquid_level = " + str(liquid_level))
-    pin13.write(0)
