@@ -55,7 +55,8 @@ def getTimestamp():
     return timestamp
 
 if __name__ == '__main__':
-    output = getTimestamp()
+    output = "<"
+    output += getTimestamp()
     output += ", "
 
     # Open port ACM0
@@ -67,8 +68,9 @@ if __name__ == '__main__':
     # Open port ACM2
     port = SerialPort('/dev/ttyACM2', 9600)
     output += port.readFromArduino()
-    output += ", "
     port.closePort()
+
+    output += ">"
 
     print(output)
 
