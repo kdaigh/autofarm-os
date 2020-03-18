@@ -20,7 +20,11 @@ class SerialPort:
         # Read sensor data
         rawInput = self.serial.readline()
         data = self.parseFromArduino(rawInput)
-        return data
+        output = ""
+        for datum in data:
+            output += datum
+            output += ", "
+        return output
 
     # Parses input by stripping non-essential characters
     def parseFromArduino(self, rawInput):
@@ -53,11 +57,9 @@ if __name__ == '__main__':
 
     liquidLevelPort = SerialPort('/dev/ttyACM0', 9600)
     output += liquidLevelPort.readFromArduino()
-    output += ", "
     liquidLevelPort.closePort()
 
     phPort = SerialPort('/dev/ttyACM1', 9600)
     output += phPort.readFromArduino()
-    output += ", "
     phPort.closePort()
 
