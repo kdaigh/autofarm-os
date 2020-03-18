@@ -63,3 +63,5 @@ if __name__ == '__main__':
     output += phPort.readFromArduino()
     phPort.closePort()
 
+    print(output)
+
