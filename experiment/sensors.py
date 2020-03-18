@@ -20,6 +20,8 @@ class SerialPort:
 
                 liquid_level = self.parseLiquidLevel(decodedInput)
                 print(liquid_level)
+            else:
+                print(".", end='')
     
     # Parses input by stripping non-essential characters
     def parseLiquidLevel(self, decodedInput):
