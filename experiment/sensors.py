@@ -1,6 +1,7 @@
 import serial
 import string
 import time
+import datetime
 
 class SerialPort:
     DEBUG = True
@@ -11,21 +12,17 @@ class SerialPort:
         self.serial = serial.Serial(port, self.baudrate)
         self.log("Serial port " + self.port + " opened  Baudrate " + str(self.baudrate))
 
-
     def readFromSensors(self):
-        # while True:
-        #     if self.serial.in_waiting > 0:
-        #         rawInput = self.serial.readline()
-        #         decodedInput = rawInput.decode('utf-8').strip('\r\n')
-
-        #         liquid_level = self.parseLiquidLevel(decodedInput)
-        #         print(liquid_level)
+        # Wait for Arduino
         while self.serial.in_waiting <= 0:
             pass
+
+        # Read sensor data
         rawInput = self.serial.readline()
         decodedInput = rawInput.decode('utf-8').strip('\r\n')
-
         liquid_level = self.parseLiquidLevel(decodedInput)
+        timestamp = str(datetime.datetime.now())
+        print(timestamp)
         print(liquid_level)      
     
     # Parses input by stripping non-essential characters
