@@ -8,5 +8,5 @@ while True:
     time.sleep(1)
     liquid_level = pin13.read()
     time.sleep(1)
-    print("liquid_level = " + liquid_level)
+    print("liquid_level = " + str(liquid_level))
     pin13.write(0)
