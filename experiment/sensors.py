@@ -20,9 +20,7 @@ class SerialPort:
         # Read sensor data
         rawInput = self.serial.readline()
         data = self.parseFromArduino(rawInput)
-        # timestamp = str(datetime.datetime.now())
-        # print(timestamp)
-        print(data)
+        return data
 
     # Parses input by stripping non-essential characters
     def parseFromArduino(self, rawInput):
@@ -30,12 +28,12 @@ class SerialPort:
         decodedInput = rawInput.decode('utf-8').strip('\r\n')
 
         # Divide data; Remove leading and trailing characters
-        parsedInput = decodedInput.split(',')
-        parsedInput[0] = parsedInput[0].strip('<')
-        parsedInput[len(parsedInput) - 1] = parsedInput[len(parsedInput) - 1].strip('>')
-        self.log("parsedInput: " + str(parsedInput))
+        data = decodedInput.split(',')
+        data[0] = data[0].strip('<')
+        data[len(data) - 1] = data[len(data) - 1].strip('>')
+        self.log("Data: " + str(data))
         
-        return parsedInput
+        return data
     
     def closePort(self):
         self.serial.close()
