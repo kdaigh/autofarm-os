@@ -1,6 +1,8 @@
 # AutofarmOS
 
-This project is built using PyFirmata library.
+Firmata is a protocol for communicating with microcontrollers from software on a host computer. The protocol can be implemented in firmware on any microcontroller architecture as well as software on any host computer software package.
+
+This project is built using the PyFirmata library.
 
 ## Getting Started
 
@@ -13,7 +15,8 @@ Install Firmata on the Pi with the following commands
 
 You can ensure that this was completed successfully, open Python Idle and run `import pyfirmata`.
 
+
 ### Versioning
 
 * pip - 20.0.2
-* Python - 3.7.3
+* Python - 3.4.4
