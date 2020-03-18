@@ -24,7 +24,7 @@ void loop()
     // Get 10 sample value from the sensor for smooth the value
     for(int i=0;i<10;i++)       
     { 
-        buf[i]=analogRead(SensorPin);
+        buf[i]=analogRead(sensorPin);
         delay(10);
     }
 
