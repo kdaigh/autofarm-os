@@ -6,15 +6,24 @@ This project is built using the PyFirmata library.
 
 ## Getting Started
 
-### Installation
+### Setup and Installation
 
-Install Firmata on the Pi with the following commands
+*1.* Load the [StandardFirmata.ino](https://github.com/firmata/arduino/blob/master/examples/StandardFirmata/StandardFirmata.ino) sketch to the Arduino.
+
+*2.* Install Firmata on the Pi with the following commands
     
-    sudo apt-get install python-serial mercurial
-    python3 -m pip install pyfirmata
+    sudo apt-get install python-serial mercurial 
+    python3 -m pip install pyfirmata` 
 
-You can ensure that this was completed successfully, open Python Idle and run `import pyfirmata`.
+You can ensure that this was completed successfully, open Python Idle and run 
+    
+    import pyfirmata
 
+
+### Blinky Test
+Test the setup and installation by running
+
+    python blinky.py
 
 ### Versioning
 
