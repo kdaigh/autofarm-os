@@ -48,7 +48,8 @@ class SerialPort:
             print(msg)
 
 def getTimestamp():
-    timestamp = str(datetime.datetime.now())
+    timestamp = "datetime = "
+    timestamp += str(datetime.datetime.now())
     return timestamp
 
 if __name__ == '__main__':
