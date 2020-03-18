@@ -59,8 +59,17 @@ if __name__ == '__main__':
     output += getTimestamp()
     output += ", "
 
+    # TODO: Add way of checking which ports are open and then reading from
+    # open ports only (via iteration)
+
     # Open port ACM0
     port = SerialPort('/dev/ttyACM0', 9600)
+    output += port.readFromArduino()
+    output += ", "
+    port.closePort()
+
+    # Open port ACM1
+    port = SerialPort('/dev/ttyACM1', 9600)
     output += port.readFromArduino()
     output += ", "
     port.closePort()
