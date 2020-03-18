@@ -28,7 +28,7 @@ class SerialPort:
     # Parses input by stripping non-essential characters
     def parseLiquidLevel(self, decodedInput):
         parsedInput = decodedInput.strip('<')
-        parsedInput = decodedInput.strip('>')
+        parsedInput = parsedInput.strip('>')
         return parsedInput
 
     # Prints given message if debug is enabled
