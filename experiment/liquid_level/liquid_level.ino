@@ -23,6 +23,6 @@ void loop() {
     serialPi.print(liquid_level);
     serialPi.println(">");
     
-    // Wait for 10 seconds
-    delay(10000);
+    // Wait for 5 seconds
+    delay(5000);
 }

@@ -23,9 +23,13 @@ class SerialPort:
         liquid_level = self.parseLiquidLevel(decodedInput)
         timestamp = str(datetime.datetime.now())
         print(timestamp)
-        print(liquid_level)      
-    
-    # Parses input by stripping non-essential characters
+        print(liquid_level)
+
+    # Parses input from PH Sensor by stripping non-essential characters
+    def parsePH(self, decodedInput):
+
+
+    # Parses input from Liquid Level Sensor by stripping non-essential characters
     def parseLiquidLevel(self, decodedInput):
         parsedInput = decodedInput.strip('<')
         parsedInput = parsedInput.strip('>')
