@@ -1,5 +1,5 @@
 # Autofarm OS
-Our master/slave project design will involve connecting five Arduino Unos to a Raspberry Pi 4 via serial port.
+Our master/slave project design will involve connecting six Arduino Unos to a Raspberry Pi 4 via serial port.
 
 ## Getting Started
 First, you'll need to install setuptools for python, using the command
@@ -19,4 +19,4 @@ Upload the blinky.ino sketch to the Arduino using the Arduino IDE. Then, run the
     python3 blinky.py
 
 ### Other Examples
-The examples provided in the `pyserial/ArduinoPC` and `pyserial/ArduinoPC2` folders were provided by user Robin2 on [this thread](https://forum.arduino.cc/index.php?topic=225329.msg1810764#msg1810764).
+The examples provided in the `examples/ArduinoPC` and `examples/ArduinoPC2` folders were provided by user Robin2 on [this thread](https://forum.arduino.cc/index.php?topic=225329.msg1810764#msg1810764).
