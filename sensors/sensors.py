@@ -3,6 +3,11 @@ import string
 import time
 import datetime
 
+import csv
+import psutil as ps
+from datetime import datetime
+from time import sleep
+
 class SerialPort:
     DEBUG = True
 
@@ -54,6 +59,29 @@ def getTimestamp():
     timestamp += str(datetime.datetime.now())
     return timestamp
 
+class Logger:
+    def __int__(self):
+        self.data_dict = {}
+
+    def collect_data(self):
+        #get time stamp
+        self.data_dict['cpu'] = (datetime.now(), *ps.cpu_times())
+        #pull sensor data
+        port = SerialPort('/dev/ttyACM0', 9600)
+        self.data_dict['port1'] = (port)
+        port = SerialPort('/dev/ttyACM1', 9600)
+        self.data_dict['port2'] = port
+        port = SerialPort('/dev/ttyACM2', 9600)
+        self.data_dict['port3'] = port
+
+    def print_data(self):
+        #print data into CSV files
+        for file, data in self.data_dict.items():
+            with open('data/' + file + '.csv', 'a+', newline='') as f:
+                writer = csv.writer(f)
+                writer.writerow(data)
+
+
 if __name__ == '__main__':
     output = "<"
     output += getTimestamp()
@@ -82,4 +110,8 @@ if __name__ == '__main__':
     output += ">"
 
     print(output)
+
+    logger = Logger()
+    logger.collect_data()
+    logger.print_data()
 
