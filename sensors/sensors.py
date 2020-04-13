@@ -59,11 +59,14 @@ def getTimestamp():
     return timestamp
 
 class Logger:
+    DEBUG = True
     dataDict = {}
 
     def collectData(self):
         #get time stamp
         self.dataDict['cpu'] = (datetime.now(), *ps.cpu_times())
+        self.log('datetime.now(): ' + str(datetime.now()))
+        self.log('*ps.cpu_times(): ' + str(*ps.cpu_times()))
         #pull sensor data
         port = SerialPort('/dev/ttyACM0', 9600)
         self.dataDict['port1'] = port
@@ -78,6 +81,11 @@ class Logger:
             with open('data/' + file + '.csv', 'a+', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(data)
+    
+    # Prints given message if debug is enabled
+    def log(self, msg):
+        if self.DEBUG == True:
+            print(msg)
 
 if __name__ == '__main__':
     output = "<"
