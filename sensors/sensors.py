@@ -1,7 +1,6 @@
 import serial
 import string
 import time
-import datetime
 
 import csv
 import psutil as ps
@@ -56,7 +55,7 @@ class SerialPort:
 
 def getTimestamp():
     timestamp = "datetime = "
-    timestamp += str(datetime.datetime.now())
+    timestamp += str(datetime.now())
     return timestamp
 
 class Logger:
@@ -90,26 +89,26 @@ if __name__ == '__main__':
     # TODO: Add way of checking which ports are open and then reading from
     # open ports only (via iteration)
 
-    # Open port ACM0
-    port = SerialPort('/dev/ttyACM0', 9600)
-    output += port.readFromArduino()
-    output += ", "
-    port.closePort()
+    # # Open port ACM0
+    # port = SerialPort('/dev/ttyACM0', 9600)
+    # output += port.readFromArduino()
+    # output += ", "
+    # port.closePort()
 
-    # Open port ACM1
-    port = SerialPort('/dev/ttyACM1', 9600)
-    output += port.readFromArduino()
-    output += ", "
-    port.closePort()
+    # # Open port ACM1
+    # port = SerialPort('/dev/ttyACM1', 9600)
+    # output += port.readFromArduino()
+    # output += ", "
+    # port.closePort()
 
-    # Open port ACM2
-    port = SerialPort('/dev/ttyACM2', 9600)
-    output += port.readFromArduino()
-    port.closePort()
+    # # Open port ACM2
+    # port = SerialPort('/dev/ttyACM2', 9600)
+    # output += port.readFromArduino()
+    # port.closePort()
 
-    output += ">"
+    # output += ">"
 
-    print(output)
+    # print(output)
 
     logger = Logger()
     logger.collect_data()
