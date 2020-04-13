@@ -66,7 +66,7 @@ class Logger:
         self.dataDict['cpu'] = (datetime.now(), *ps.cpu_times())
         #pull sensor data
         port = SerialPort('/dev/ttyACM0', 9600)
-        self.dataDict['port1'] = (port)
+        self.dataDict['port1'] = port
         port = SerialPort('/dev/ttyACM1', 9600)
         self.dataDict['port2'] = port
         # port = SerialPort('/dev/ttyACM2', 9600)
