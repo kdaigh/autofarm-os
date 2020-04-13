@@ -63,14 +63,22 @@ class Logger:
     dataDict = {}
 
     def collectData(self):
-        #get time stamp
+        # Get time stamp
         self.dataDict['timestamp'] = datetime.now()
-        self.log('datetime.now(): ' + str(datetime.now()))
-        #pull sensor data
-        port = SerialPort('/dev/ttyACM0', 9600)
-        self.dataDict['port1'] = port
-        port = SerialPort('/dev/ttyACM1', 9600)
-        self.dataDict['port2'] = port
+        self.log('timestamp: ' + str(datetime.now()))
+
+        # Get sensor data
+        self.ports = ['/dev/ttyACM0', '/dev/ttyACM1']
+        for port in ports:
+            ser = SerialPort(port, 9600)
+            self.dataDict[port] = ser.readFromArduino()
+            self.log('dataDict[' + port + '] = ' + ser.readFromArduino())
+            port.closePort()
+
+        # port = SerialPort('/dev/ttyACM0', 9600)
+        # self.dataDict['port1'] = port
+        # port = SerialPort('/dev/ttyACM1', 9600)
+        # self.dataDict['port2'] = port
         # port = SerialPort('/dev/ttyACM2', 9600)
         # self.data_dict['port3'] = port
 
