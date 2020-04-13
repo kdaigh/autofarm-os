@@ -64,9 +64,8 @@ class Logger:
 
     def collectData(self):
         #get time stamp
-        self.dataDict['cpu'] = (datetime.now(), *ps.cpu_times())
+        self.dataDict['timestamp'] = datetime.now()
         self.log('datetime.now(): ' + str(datetime.now()))
-        self.log('*ps.cpu_times(): ' + str(*ps.cpu_times()))
         #pull sensor data
         port = SerialPort('/dev/ttyACM0', 9600)
         self.dataDict['port1'] = port
