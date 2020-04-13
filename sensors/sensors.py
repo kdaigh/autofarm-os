@@ -59,8 +59,7 @@ def getTimestamp():
     return timestamp
 
 class Logger:
-    def __int__(self):
-        self.data_dict = {}
+    data_dict = {}
 
     def collect_data(self):
         #get time stamp
@@ -79,7 +78,6 @@ class Logger:
             with open('data/' + file + '.csv', 'a+', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(data)
-
 
 if __name__ == '__main__':
     output = "<"
