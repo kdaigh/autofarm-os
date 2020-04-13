@@ -1,12 +1,11 @@
 import serial
 import string
 import time
-
 import csv
-import psutil as ps
 from datetime import datetime
-from time import sleep
 
+# @class SerialPort
+# Represents a serial port of the Raspberry Pi
 class SerialPort:
     DEBUG = True
 
@@ -22,6 +21,8 @@ class SerialPort:
             pass
 
         # Read sensor data
+        # TODO: Add way of checking which ports are open and then reading from
+        # open ports only (via iteration)
         rawInput = self.serial.readline()
         data = self.parseFromArduino(rawInput)
         output = ""
@@ -58,35 +59,39 @@ def getTimestamp():
     timestamp += str(datetime.now())
     return timestamp
 
+# @class Logger
+# Logs sensor data to CSV
 class Logger:
     DEBUG = True
-    dataDict = {}
 
+    # Collects data into values array
+    # @returns Values array
     def collectData(self):
+        values = []
+
         # Get time stamp
-        self.dataDict['timestamp'] = datetime.now()
+        values.append(datetime.now())
         self.log('timestamp: ' + str(datetime.now()))
 
         # Get sensor data
         self.ports = ['/dev/ttyACM0', '/dev/ttyACM1']
         for port in self.ports:
             ser = SerialPort(port, 9600)
-            self.dataDict[port] = ser.readFromArduino()
+            self.values.append(ser.readFromArduino())
             ser.closePort()
-
-        # port = SerialPort('/dev/ttyACM0', 9600)
-        # self.dataDict['port1'] = port
-        # port = SerialPort('/dev/ttyACM1', 9600)
-        # self.dataDict['port2'] = port
-        # port = SerialPort('/dev/ttyACM2', 9600)
-        # self.data_dict['port3'] = port
+            
+        return values
 
     def printData(self):
-        #print data into CSV files
-        for file, data in self.dataDict.items():
-            with open('data/' + file + '.csv', 'a+', newline='') as f:
-                writer = csv.writer(f)
-                writer.writerow(data)
+        # Print data into CSV files
+        for value in self.values:
+            # TODO
+
+            # PREV CODE: Used dictionary to print a line of data from a 
+            # sensor to an EXISTING file named according to port (i.e. 'port1.csv')
+            # with open('data/' + file + '.csv', 'a+', newline='') as f:
+            #     writer = csv.writer(f)
+            #     writer.writerow(data)
     
     # Prints given message if debug is enabled
     def log(self, msg):
@@ -94,34 +99,6 @@ class Logger:
             print(msg)
 
 if __name__ == '__main__':
-    output = "<"
-    output += getTimestamp()
-    output += ", "
-
-    # TODO: Add way of checking which ports are open and then reading from
-    # open ports only (via iteration)
-
-    # # Open port ACM0
-    # port = SerialPort('/dev/ttyACM0', 9600)
-    # output += port.readFromArduino()
-    # output += ", "
-    # port.closePort()
-
-    # # Open port ACM1
-    # port = SerialPort('/dev/ttyACM1', 9600)
-    # output += port.readFromArduino()
-    # output += ", "
-    # port.closePort()
-
-    # # Open port ACM2
-    # port = SerialPort('/dev/ttyACM2', 9600)
-    # output += port.readFromArduino()
-    # port.closePort()
-
-    # output += ">"
-
-    # print(output)
-
     logger = Logger()
     logger.collectData()
     logger.printData()
