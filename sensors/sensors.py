@@ -59,22 +59,22 @@ def getTimestamp():
     return timestamp
 
 class Logger:
-    data_dict = {}
+    dataDict = {}
 
-    def collect_data(self):
+    def collectData(self):
         #get time stamp
-        self.data_dict['cpu'] = (datetime.now(), *ps.cpu_times())
+        self.dataDict['cpu'] = (datetime.now(), *ps.cpu_times())
         #pull sensor data
         port = SerialPort('/dev/ttyACM0', 9600)
-        self.data_dict['port1'] = (port)
+        self.dataDict['port1'] = (port)
         port = SerialPort('/dev/ttyACM1', 9600)
-        self.data_dict['port2'] = port
+        self.dataDict['port2'] = port
         # port = SerialPort('/dev/ttyACM2', 9600)
         # self.data_dict['port3'] = port
 
-    def print_data(self):
+    def printData(self):
         #print data into CSV files
-        for file, data in self.data_dict.items():
+        for file, data in self.dataDict.items():
             with open('data/' + file + '.csv', 'a+', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(data)
@@ -109,6 +109,6 @@ if __name__ == '__main__':
     # print(output)
 
     logger = Logger()
-    logger.collect_data()
-    logger.print_data()
+    logger.collectData()
+    logger.printData()
 
