@@ -72,7 +72,6 @@ class Logger:
         for port in self.ports:
             ser = SerialPort(port, 9600)
             self.dataDict[port] = ser.readFromArduino()
-            self.log('dataDict[' + port + '] = ' + ser.readFromArduino())
             ser.closePort()
 
         # port = SerialPort('/dev/ttyACM0', 9600)
