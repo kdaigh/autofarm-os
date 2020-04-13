@@ -69,8 +69,8 @@ class Logger:
         self.data_dict['port1'] = (port)
         port = SerialPort('/dev/ttyACM1', 9600)
         self.data_dict['port2'] = port
-        port = SerialPort('/dev/ttyACM2', 9600)
-        self.data_dict['port3'] = port
+        # port = SerialPort('/dev/ttyACM2', 9600)
+        # self.data_dict['port3'] = port
 
     def print_data(self):
         #print data into CSV files
