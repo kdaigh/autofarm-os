@@ -69,11 +69,11 @@ class Logger:
 
         # Get sensor data
         self.ports = ['/dev/ttyACM0', '/dev/ttyACM1']
-        for port in ports:
+        for port in self.ports:
             ser = SerialPort(port, 9600)
             self.dataDict[port] = ser.readFromArduino()
             self.log('dataDict[' + port + '] = ' + ser.readFromArduino())
-            port.closePort()
+            ser.closePort()
 
         # port = SerialPort('/dev/ttyACM0', 9600)
         # self.dataDict['port1'] = port
