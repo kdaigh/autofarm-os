@@ -25,23 +25,20 @@ void setup()
 
     // Init SHT20 Sensor
     sht20.initSHT20();                                 
-
-    // Check SHT20 Sensor
-    delay(100);
-    sht20.checkSHT20();                                 
+    delay(100);                     
 }
 
 void loop()
 {
     // Read data from sensor
+    float humidity = sht20.readHumidity();               // Read Humidity
     float temp = sht20.readTemperature();               // Read Temperature
-    float humdity = sht20.readHumidity();               // Read Humidity
 
     // Send  data to Raspberry Pi
     serialPi.print("<temperature = ");
     serialPi.print(temp, 1);
-    serialPi.print("°C, humidity= ");
-    serialPi.print(humdity, 2);
+    serialPi.print("°C, humidity = ");
+    serialPi.print(humidity, 2);
     serialPi.println("%>");
 
     // Wait for 5 seconds

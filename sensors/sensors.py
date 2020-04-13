@@ -1,12 +1,11 @@
 import serial
 import string
 import time
-
 import csv
-import psutil as ps
 from datetime import datetime
-from time import sleep
 
+# @class SerialPort
+# Represents a serial port of the Raspberry Pi
 class SerialPort:
     DEBUG = True
 
@@ -36,17 +35,18 @@ class SerialPort:
     def parseFromArduino(self, rawInput):
         # Decode input from Arduino
         decodedInput = rawInput.decode('utf-8').strip('\r\n')
+        self.log("Input: " + decodedInput)
 
         # Divide data; Remove leading and trailing characters
         data = decodedInput.split(',')
         data[0] = data[0].strip('<')
         data[len(data) - 1] = data[len(data) - 1].strip('>')
-        self.log("Data: " + str(data))
         
         return data
     
     def closePort(self):
         self.serial.close()
+        self.log("Serial port " + self.port + " closed")
 
     # Prints given message if debug is enabled
     def log(self, msg):
@@ -58,59 +58,54 @@ def getTimestamp():
     timestamp += str(datetime.now())
     return timestamp
 
+# @class Logger
+# Logs sensor data to CSV
 class Logger:
-    def __int__(self):
-        self.data_dict = {}
+    DEBUG = True
 
-    def collect_data(self):
-        #get time stamp
-        self.data_dict['cpu'] = (datetime.now(), *ps.cpu_times())
-        #pull sensor data
-        port = SerialPort('/dev/ttyACM0', 9600)
-        self.data_dict['port1'] = (port)
-        port = SerialPort('/dev/ttyACM1', 9600)
-        self.data_dict['port2'] = port
-        port = SerialPort('/dev/ttyACM2', 9600)
-        self.data_dict['port3'] = port
+    # Collects data into a dictionary
+    # @returns Dictionary of labels and values
+    def collectData(self):
+        values = {}
 
-    def print_data(self):
-        #print data into CSV files
-        for file, data in self.data_dict.items():
-            with open('data/' + file + '.csv', 'a+', newline='') as f:
-                writer = csv.writer(f)
-                writer.writerow(data)
+        # Get time stamp
+        values['datetime'] = str(datetime.now())
 
+        # Get sensor data
+        # NOTE: The use of [ARD1, ARD2, ...] requires use of the 10-usb-serial.rules configuration file
+        self.ports = ['/dev/ttyARD1', '/dev/ttyARD2', '/dev/ttyARD3', '/dev/ttyARD4']
+        for port in self.ports:
+            ser = SerialPort(port, 9600)
+            data = ser.readFromArduino()
+            data = data.split(',')
+            for datum in data:
+                pair = datum.split('=')
+                label = pair[0].strip(' ')
+                value = pair[1].strip(' ')
+                values[label] = value
+            ser.closePort()
+            
+        return values
+
+    # Outputs data in a CSV-style string
+    def printData(self, values):
+        print("\nLine added to file: ")
+        counter = 1
+        for label, value in values.items():
+            print(value, end='')
+            if counter != len(values):
+                print(', ', end='')
+            else:
+                print()
+            counter = counter + 1
+
+    # Prints given message if debug is enabled
+    def log(self, msg):
+        if self.DEBUG == True:
+            print(msg)
 
 if __name__ == '__main__':
-    output = "<"
-    output += getTimestamp()
-    output += ", "
-
-    # TODO: Add way of checking which ports are open and then reading from
-    # open ports only (via iteration)
-
-    # # Open port ACM0
-    # port = SerialPort('/dev/ttyACM0', 9600)
-    # output += port.readFromArduino()
-    # output += ", "
-    # port.closePort()
-
-    # # Open port ACM1
-    # port = SerialPort('/dev/ttyACM1', 9600)
-    # output += port.readFromArduino()
-    # output += ", "
-    # port.closePort()
-
-    # # Open port ACM2
-    # port = SerialPort('/dev/ttyACM2', 9600)
-    # output += port.readFromArduino()
-    # port.closePort()
-
-    # output += ">"
-
-    # print(output)
-
     logger = Logger()
-    logger.collect_data()
-    logger.print_data()
+    values = logger.collectData()
+    logger.printData(values)
 
