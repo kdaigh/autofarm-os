@@ -35,9 +35,9 @@ void loop()
     float temp = sht20.readTemperature();               // Read Temperature
 
     // Send  data to Raspberry Pi
-    serialPi.print("<temperature=");
+    serialPi.print("<temperature = ");
     serialPi.print(temp, 1);
-    serialPi.print("°C,humidity=");
+    serialPi.print("°C, humidity = ");
     serialPi.print(humidity, 2);
     serialPi.println("%>");
 

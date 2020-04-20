@@ -79,9 +79,7 @@ class Logger:
             data = ser.readFromArduino()
             data = data.split(',')
             for datum in data:
-                self.log("Datum " + str(datum))
                 pair = datum.split('=')
-                self.log("Pair " + str(pair))
                 label = pair[0].strip(' ')
                 value = pair[1].strip(' ')
                 values[label] = value
@@ -94,7 +92,7 @@ class Logger:
     def printData(self, values):
         print("Line added to file: ")
         counter = 1
-        for value in values:
+        for label, value in values:
             print(value, end='')
             if counter != len(values):
                 print(',', end='')
