@@ -79,6 +79,7 @@ class Logger:
             data = ser.readFromArduino()
             for datum in data:
                 pair = datum.split(' = ')
+                self.log("Pair " + str(pair))
                 label = pair[0]
                 value = pair[1]
                 values[label] = value
