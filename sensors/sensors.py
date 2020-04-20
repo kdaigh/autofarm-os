@@ -21,8 +21,6 @@ class SerialPort:
             pass
 
         # Read sensor data
-        # TODO: Add way of checking which ports are open and then reading from
-        # open ports only (via iteration)
         rawInput = self.serial.readline()
         data = self.parseFromArduino(rawInput)
         output = ""
@@ -74,6 +72,7 @@ class Logger:
         self.log('timestamp: ' + str(datetime.now()))
 
         # Get sensor data
+        # NOTE: The use of ARD1, ARD2, ... requires use of the 10-usb-serial.rules configuration file
         self.ports = ['/dev/ttyARD1', '/dev/ttyARD2', '/dev/ttyARD3', '/dev/ttyARD4']
         for port in self.ports:
             ser = SerialPort(port, 9600)
@@ -83,18 +82,16 @@ class Logger:
             
         return values
 
-    def printData(self):
-        # Print data into CSV files
-        for value in self.values:
-            pass
-            # TODO
+    # TODO: Print data into CSV files
+    def printData(self, values):
+        numValues = len(values)
+        counter = 1
+        for value in values:
+            print(value, end='')
+            if counter != len(values):
+                print(',', end='')
+            counter = counter + 1
 
-            # PREV CODE: Used dictionary to print a line of data from a 
-            # sensor to an EXISTING file named according to port (i.e. 'port1.csv')
-            # with open('data/' + file + '.csv', 'a+', newline='') as f:
-            #     writer = csv.writer(f)
-            #     writer.writerow(data)
-    
     # Prints given message if debug is enabled
     def log(self, msg):
         if self.DEBUG == True:
@@ -102,6 +99,6 @@ class Logger:
 
 if __name__ == '__main__':
     logger = Logger()
-    logger.collectData()
-    logger.printData()
+    values = logger.collectData()
+    logger.printData(values)
 
