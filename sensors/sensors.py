@@ -70,7 +70,7 @@ class Logger:
         values = []
 
         # Get time stamp
-        values.append(datetime.now())
+        values.append("datetime = " + str(datetime.now()))
         self.log('timestamp: ' + str(datetime.now()))
 
         # Get sensor data
