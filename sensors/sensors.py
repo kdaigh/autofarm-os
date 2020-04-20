@@ -92,7 +92,7 @@ class Logger:
     def printData(self, values):
         print("Line added to file: ")
         counter = 1
-        for label, value in values:
+        for label, value in values.items():
             print(value, end='')
             if counter != len(values):
                 print(',', end='')
