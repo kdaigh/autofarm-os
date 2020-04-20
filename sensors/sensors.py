@@ -84,7 +84,6 @@ class Logger:
                 value = pair[1].strip(' ')
                 values[label] = value
             ser.closePort()
-            self.log("Values: " + str(values))
             
         return values
 
@@ -95,7 +94,7 @@ class Logger:
         for label, value in values.items():
             print(value, end='')
             if counter != len(values):
-                print(',', end='')
+                print(', ', end='')
             else:
                 print()
             counter = counter + 1
