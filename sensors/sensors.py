@@ -77,7 +77,7 @@ class Logger:
         self.ports = ['/dev/ttyARD1', '/dev/ttyARD2', '/dev/ttyARD3', '/dev/ttyARD4']
         for port in self.ports:
             ser = SerialPort(port, 9600)
-            self.values.append(ser.readFromArduino())
+            values.append(ser.readFromArduino())
             ser.closePort()
             
         return values
