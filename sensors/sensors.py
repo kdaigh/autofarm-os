@@ -63,8 +63,8 @@ def getTimestamp():
 class Logger:
     DEBUG = True
 
-    # Collects data into values array
-    # @returns Values array
+    # Collects data into a dictionary
+    # @returns Dictionary of labels and values
     def collectData(self):
         values = {}
 
@@ -72,7 +72,7 @@ class Logger:
         values['datetime'] = str(datetime.now())
 
         # Get sensor data
-        # NOTE: The use of ARD1, ARD2, ... requires use of the 10-usb-serial.rules configuration file
+        # NOTE: The use of [ARD1, ARD2, ...] requires use of the 10-usb-serial.rules configuration file
         self.ports = ['/dev/ttyARD1', '/dev/ttyARD2', '/dev/ttyARD3', '/dev/ttyARD4']
         for port in self.ports:
             ser = SerialPort(port, 9600)
@@ -87,7 +87,7 @@ class Logger:
             
         return values
 
-    # TODO: Print data into CSV files
+    # Outputs data in a CSV-style string
     def printData(self, values):
         print("\nLine added to file: ")
         counter = 1
