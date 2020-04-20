@@ -19,7 +19,7 @@ void loop() {
     int liquid_level = digitalRead(sensorPin);
 
     // Send  data to Raspberry Pi
-    serialPi.print("<liquid_level = ");
+    serialPi.print("<liquid_level=");
     serialPi.print(liquid_level);
     serialPi.println(">");
     

@@ -56,7 +56,7 @@ void loop()
     phValue = 3.5 * phValue;   
 
     // Send  data to Raspberry Pi
-    serialPi.print("<ph = ");
+    serialPi.print("<ph=");
     serialPi.print(phValue, DEC);
     serialPi.println(">");  
 
