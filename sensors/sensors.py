@@ -74,7 +74,7 @@ class Logger:
         self.log('timestamp: ' + str(datetime.now()))
 
         # Get sensor data
-        self.ports = ['/dev/ttyACM0', '/dev/ttyACM1']
+        self.ports = ['/dev/ttyARD1', '/dev/ttyARD2', '/dev/ttyARD3', '/dev/ttyARD4']
         for port in self.ports:
             ser = SerialPort(port, 9600)
             self.values.append(ser.readFromArduino())
