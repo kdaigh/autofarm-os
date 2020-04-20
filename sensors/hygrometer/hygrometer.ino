@@ -31,8 +31,8 @@ void setup()
 void loop()
 {
     // Read data from sensor
-    float temp = sht20.readTemperature();               // Read Temperature
     float humdity = sht20.readHumidity();               // Read Humidity
+    float temp = sht20.readTemperature();               // Read Temperature
 
     // Send  data to Raspberry Pi
     serialPi.print("<temperature = ");
