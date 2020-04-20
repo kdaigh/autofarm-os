@@ -13,7 +13,7 @@ void loop() {
     float sample = ((float)rand()/(float)(RAND_MAX)) * MAXPAR;
 
     // Send  data to Raspberry Pi
-    serialPi.print("<par = ");
+    serialPi.print("<par=");
     serialPi.print(sample, DEC);
     serialPi.println(">");              // unit: μmol/m²s
 
