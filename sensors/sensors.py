@@ -78,7 +78,7 @@ class Logger:
             ser = SerialPort(port, 9600)
             data = ser.readFromArduino()
             for datum in data:
-                pair = datum.split(' = ')
+                pair = datum.split('=')
                 self.log("Pair " + str(pair))
                 label = pair[0]
                 value = pair[1]
