@@ -25,7 +25,8 @@ void setup()
 
     // Init SHT20 Sensor
     sht20.initSHT20();                                 
-    delay(100);                           
+    delay(100);      
+    sht20.checkSHT20();                                 // Check SHT20 Sensor                     
 }
 
 void loop()
@@ -41,6 +42,6 @@ void loop()
     serialPi.print(humidity, 2);
     serialPi.println("%>");
 
-    // Wait for 5 seconds
-    delay(5000);
+    // Wait for 1 second
+    delay(1000);
 }
