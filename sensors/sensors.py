@@ -85,6 +85,7 @@ class Logger:
     def printData(self):
         # Print data into CSV files
         for value in self.values:
+            pass
             # TODO
 
             # PREV CODE: Used dictionary to print a line of data from a 
