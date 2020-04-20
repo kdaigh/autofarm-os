@@ -77,13 +77,14 @@ class Logger:
         for port in self.ports:
             ser = SerialPort(port, 9600)
             data = ser.readFromArduino()
-            for datum in data:
-                self.log("Datum " + str(datum))
-                pair = datum.split('=')
-                self.log("Pair " + str(pair))
-                label = pair[0]
-                value = pair[1]
-                values[label] = value
+            self.log("data " + str(data))
+            # for datum in data:
+            #     self.log("Datum " + str(datum))
+            #     pair = datum.split('=')
+            #     self.log("Pair " + str(pair))
+            #     label = pair[0]
+            #     value = pair[1]
+            #     values[label] = value
             ser.closePort()
             self.log("Values: " + str(values))
             
