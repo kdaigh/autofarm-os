@@ -79,6 +79,7 @@ class Logger:
             ser = SerialPort(port, 9600)
             values.append(ser.readFromArduino())
             ser.closePort()
+            self.log("Values: " + str(values))
             
         return values
 
