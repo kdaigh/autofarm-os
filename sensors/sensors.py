@@ -65,10 +65,10 @@ class Logger:
     # Collects data into values array
     # @returns Values array
     def collectData(self):
-        values = []
+        values = {}
 
         # Get time stamp
-        values.append("datetime = " + str(datetime.now()))
+        values[datetime] = str(datetime.now())
         self.log('timestamp: ' + str(datetime.now()))
 
         # Get sensor data
@@ -76,7 +76,12 @@ class Logger:
         self.ports = ['/dev/ttyARD1', '/dev/ttyARD2', '/dev/ttyARD3', '/dev/ttyARD4']
         for port in self.ports:
             ser = SerialPort(port, 9600)
-            values.append(ser.readFromArduino())
+            data = ser.readFromArduino()
+            for datum in data:
+                pair = datum.split(' = ')
+                label = pair[0]
+                value = pair[1]
+                values[label] = value
             ser.closePort()
             self.log("Values: " + str(values))
             
@@ -84,12 +89,14 @@ class Logger:
 
     # TODO: Print data into CSV files
     def printData(self, values):
-        numValues = len(values)
+        print("Line added to file: ")
         counter = 1
         for value in values:
             print(value, end='')
             if counter != len(values):
                 print(',', end='')
+            else:
+                print()
             counter = counter + 1
 
     # Prints given message if debug is enabled
