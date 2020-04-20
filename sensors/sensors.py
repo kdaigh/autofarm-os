@@ -68,7 +68,7 @@ class Logger:
         values = {}
 
         # Get time stamp
-        values[datetime] = str(datetime.now())
+        values['datetime'] = str(datetime.now())
         self.log('timestamp: ' + str(datetime.now()))
 
         # Get sensor data
@@ -76,6 +76,7 @@ class Logger:
         self.ports = ['/dev/ttyARD1', '/dev/ttyARD2', '/dev/ttyARD3', '/dev/ttyARD4']
         for port in self.ports:
             ser = SerialPort(port, 9600)
+            data = []
             data = ser.readFromArduino()
             self.log("data " + str(data))
             # for datum in data:
