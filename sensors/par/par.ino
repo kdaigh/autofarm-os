@@ -15,7 +15,7 @@ void loop() {
     // Send  data to Raspberry Pi
     serialPi.print("<par = ");
     serialPi.print(sample, DEC);
-    serialPi.println("μmol/m²s>");  
+    serialPi.println(">");              // unit: μmol/m²s
 
     // Wait for 5 seconds
     delay(5000);
