@@ -76,16 +76,15 @@ class Logger:
         self.ports = ['/dev/ttyARD1', '/dev/ttyARD2', '/dev/ttyARD3', '/dev/ttyARD4']
         for port in self.ports:
             ser = SerialPort(port, 9600)
-            data = []
             data = ser.readFromArduino()
-            self.log("data " + str(data))
-            # for datum in data:
-            #     self.log("Datum " + str(datum))
-            #     pair = datum.split('=')
-            #     self.log("Pair " + str(pair))
-            #     label = pair[0]
-            #     value = pair[1]
-            #     values[label] = value
+            data = data.split(',')
+            for datum in data:
+                self.log("Datum " + str(datum))
+                pair = datum.split('=')
+                self.log("Pair " + str(pair))
+                label = pair[0]
+                value = pair[1]
+                values[label] = value
             ser.closePort()
             self.log("Values: " + str(values))
             
