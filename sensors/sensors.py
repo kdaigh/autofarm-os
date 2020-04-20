@@ -82,8 +82,8 @@ class Logger:
                 self.log("Datum " + str(datum))
                 pair = datum.split('=')
                 self.log("Pair " + str(pair))
-                label = pair[0]
-                value = pair[1]
+                label = pair[0].strip(' ')
+                value = pair[1].strip(' ')
                 values[label] = value
             ser.closePort()
             self.log("Values: " + str(values))
