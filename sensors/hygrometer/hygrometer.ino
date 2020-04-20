@@ -25,8 +25,7 @@ void setup()
 
     // Init SHT20 Sensor
     sht20.initSHT20();                                 
-    delay(100);      
-    sht20.checkSHT20();                                 // Check SHT20 Sensor                     
+    delay(100);                     
 }
 
 void loop()

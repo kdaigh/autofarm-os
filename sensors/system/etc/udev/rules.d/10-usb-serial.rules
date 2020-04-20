@@ -1,7 +1,7 @@
-SUBSYSTEM=="tty", ATTRS{idProduct}=="0043", ATTRS{idVendor}=="2341", ATTRS{serial}=="8573531373235120E0D0", SYMLINK+="ttyARD1"
+SUBSYSTEM=="tty", ATTRS{idProduct}=="0043", ATTRS{idVendor}=="2341", ATTRS{serial}=="7583033383835101C060", SYMLINK+="ttyARD1"
 
 SUBSYSTEM=="tty", ATTRS{idProduct}=="0043", ATTRS{idVendor}=="2341", ATTRS{serial}=="8573531373235110D011", SYMLINK+="ttyARD2"
 
-SUBSYSTEM=="tty", ATTRS{idProduct}=="0043", ATTRS{idVendor}=="2341", ATTRS{serial}=="7583033383835101C060", SYMLINK+="ttyARD3"
+SUBSYSTEM=="tty", ATTRS{idProduct}=="0043", ATTRS{idVendor}=="2341", ATTRS{serial}=="8573531373235120E0D0", SYMLINK+="ttyARD3"
 
 SUBSYSTEM=="tty", ATTRS{idProduct}=="0043", ATTRS{idVendor}=="2341", ATTRS{serial}=="55730303137351017071", SYMLINK+="ttyARD4"
