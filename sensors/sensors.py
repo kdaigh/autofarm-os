@@ -35,12 +35,12 @@ class SerialPort:
     def parseFromArduino(self, rawInput):
         # Decode input from Arduino
         decodedInput = rawInput.decode('utf-8').strip('\r\n')
+        self.log("Input: " + decodedInput)
 
         # Divide data; Remove leading and trailing characters
         data = decodedInput.split(',')
         data[0] = data[0].strip('<')
         data[len(data) - 1] = data[len(data) - 1].strip('>')
-        self.log("Data: " + str(data))
         
         return data
     
@@ -69,7 +69,6 @@ class Logger:
 
         # Get time stamp
         values['datetime'] = str(datetime.now())
-        self.log('timestamp: ' + str(datetime.now()))
 
         # Get sensor data
         # NOTE: The use of ARD1, ARD2, ... requires use of the 10-usb-serial.rules configuration file
