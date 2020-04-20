@@ -89,7 +89,7 @@ class Logger:
 
     # TODO: Print data into CSV files
     def printData(self, values):
-        print("Line added to file: ")
+        print("\nLine added to file: ")
         counter = 1
         for label, value in values.items():
             print(value, end='')
