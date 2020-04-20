@@ -4,6 +4,7 @@
 #define serialPi Serial
 
 void setup() {
+    serialPi.begin(9600);  // Arduino to serial monitor
     srand((unsigned int)time(NULL));
 }
 
