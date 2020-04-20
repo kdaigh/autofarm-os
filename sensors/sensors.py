@@ -46,6 +46,7 @@ class SerialPort:
     
     def closePort(self):
         self.serial.close()
+        self.log("Serial port " + self.port + " closed")
 
     # Prints given message if debug is enabled
     def log(self, msg):
