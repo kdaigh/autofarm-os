@@ -26,6 +26,11 @@ void setup() {                                              // Set up the hardwa
     sensorstring.reserve(30);                               // Set aside some bytes for receiving data from Atlas Scientific product
 }
 
+void serialEvent() {                                        // If the hardware serial port_0 receives a char
+    inputstring = Serial.readStringUntil(13);               // Read the string until we see a <CR>
+    input_string_complete = true;                           // Set the flag used to tell if we have received a completed string from the PC
+}
+
 void loop() {
     if (input_string_complete == true) {                    // if a string from the PC has been received in its entirety
         myserial.print(inputstring);                        // send that string to the Atlas Scientific product
