@@ -61,7 +61,7 @@ void print_EC_data(void) {
 
     // Send  data to Raspberry Pi
     serialPi.print("<EC = ");
-    serialPi.print(f_EC, 2);
+    serialPi.print(f_ec, 2);
     serialPi.print(", TDS = ");
     serialPi.print(TDS);
     serialPi.print(", SAL = ");
