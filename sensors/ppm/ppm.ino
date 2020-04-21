@@ -14,21 +14,14 @@
 
 SoftwareSerial myserial(rx, tx);                      // Define how the soft serial port is going to work
 
-String inputstring = "";                              // A string to hold incoming data from the PC
 String sensorstring = "";                             // A string to hold the data from the Atlas Scientific product
 boolean input_string_complete = false;                // Have we received all the data from the PC
 boolean sensor_string_complete = false;               // Have we received all the data from the Atlas Scientific product
 
 void setup() {                                              // Set up the hardware
     serialPi.begin(9600);                                   // Set baud rate for the hardware serial port_0 to 9600
-    myserial.begin(9600);                                   // Set baud rate for the software serial port to 9600
-    inputstring.reserve(10);                                // Set aside some bytes for receiving data from the PC
+    myserial.begin(9600);                                   // Set baud rate for the software serial port to 9600           
     sensorstring.reserve(30);                               // Set aside some bytes for receiving data from Atlas Scientific product
-}
-
-void serialEvent() {                                        // If the hardware serial port_0 receives a char
-    inputstring = serialPi.readStringUntil(13);             // Read the string until we see a <CR>
-    input_string_complete = true;                           // Set the flag used to tell if we have received a completed string from the PC
 }
 
 void loop() {
@@ -70,13 +63,13 @@ void print_EC_data(void) {
 
     // Send  data to Raspberry Pi
     serialPi.print("<EC = ");
-    serialPi.print(EC, 2);
+    serialPi.print(EC);
     serialPi.print(", TDS = ");
     serialPi.print(TDS);
     serialPi.print(", SAL = ");
-    serialPi.print(SAL, 2);
+    serialPi.print(SAL);
     serialPi.print(", GRAV = ");
-    serialPi.print(GRAV, 2);
+    serialPi.print(GRAV);
     serialPi.println("%>");
 }
 
