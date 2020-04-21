@@ -40,6 +40,9 @@ void loop() {
         }
         sensorstring = "";                                  // clear the string
         sensor_string_complete = false;                     // reset the flag used to tell if we have received a completed string from the Atlas Scientific product
+        
+        // Wait for 5 seconds
+        delay(5000);
     }
 }
 
@@ -67,9 +70,6 @@ void print_EC_data(void) {
     serialPi.print(", SAL = ");
     serialPi.print(SAL);
     serialPi.println(">");
-
-    // Wait for 5 seconds
-    delay(5000);
 }
 
 
