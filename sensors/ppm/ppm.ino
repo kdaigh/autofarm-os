@@ -64,9 +64,7 @@ void print_EC_data(void) {
     serialPi.print(TDS);
     serialPi.print(", SAL = ");
     serialPi.print(SAL);
-    serialPi.print(", GRAV = ");
-    serialPi.print(GRAV);
-    serialPi.println("%>");
+    serialPi.println(">");
 
     // Wait for 5 seconds
     delay(5000);
