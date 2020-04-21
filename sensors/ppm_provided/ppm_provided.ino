@@ -40,10 +40,10 @@ void serialEvent() {                                  //if the hardware serial p
 void loop() {                                         //here we go...
 
   if (input_string_complete == true) {                //if a string from the PC has been received in its entirety
-    myserial.print(inputstring);                      //send that string to the Atlas Scientific product
-    myserial.print('\r');                             //add a <CR> to the end of the string
-    inputstring = "";                                 //clear the string
-    input_string_complete = false;                    //reset the flag used to tell if we have received a completed string from the PC
+        myserial.print(inputstring);                      //send that string to the Atlas Scientific product
+        myserial.print('\r');                             //add a <CR> to the end of the string
+        inputstring = "";                                 //clear the string
+        input_string_complete = false;                    //reset the flag used to tell if we have received a completed string from the PC
   }
 
   if (myserial.available() > 0) {                     //if we see that the Atlas Scientific product has sent a character
