@@ -49,6 +49,8 @@ void loop() {
         sensorstring = "";                                  // clear the string
         sensor_string_complete = false;                     // reset the flag used to tell if we have received a completed string from the Atlas Scientific product
     }
+    // Wait for 5 seconds
+    delay(5000);
 }
 
 // Parses the string
@@ -59,6 +61,7 @@ void print_EC_data(void) {
     char *SAL;                      // Salinity
     char *GRAV;                     // Specific gravity
     
+    serialPi.print(sensorstring);
     sensorstring.toCharArray(sensorstring_array, 30);
     EC = strtok(sensorstring_array, ",");
     TDS = strtok(NULL, ",");
@@ -67,17 +70,14 @@ void print_EC_data(void) {
 
     // Send  data to Raspberry Pi
     serialPi.print("<EC = ");
-    serialPi.print(EC);
+    serialPi.print(EC, 2);
     serialPi.print(", TDS = ");
     serialPi.print(TDS);
     serialPi.print(", SAL = ");
-    serialPi.print(SAL);
+    serialPi.print(SAL, 2);
     serialPi.print(", GRAV = ");
-    serialPi.print(GRAV);
+    serialPi.print(GRAV, 2);
     serialPi.println("%>");
-
-    // Wait for 5 seconds
-    delay(5000);
 }
 
 
