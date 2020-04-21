@@ -50,16 +50,18 @@ void print_EC_data(void) {
     char *TDS;                      // TDS
     char *SAL;                      // Salinity
     char *GRAV;                     // Specific gravity
+    float f_ec;    
     
     sensorstring.toCharArray(sensorstring_array, 30);
     EC = strtok(sensorstring_array, ",");
     TDS = strtok(NULL, ",");
     SAL = strtok(NULL, ",");
     GRAV = strtok(NULL, ",");
+    f_ec = atof(EC); 
 
     // Send  data to Raspberry Pi
     serialPi.print("<EC = ");
-    serialPi.print(EC);
+    serialPi.print(f_EC, 2);
     serialPi.print(", TDS = ");
     serialPi.print(TDS);
     serialPi.print(", SAL = ");
