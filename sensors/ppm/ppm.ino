@@ -26,9 +26,10 @@ void setup() {                                              // Set up the hardwa
 void loop() {
     if (myserial.available() > 0) {                         // if we see that the Atlas Scientific product has sent a character
         char inchar = (char)myserial.read();                // get the char we just received
-        sensorstring += inchar;                             // add the char to the var called sensorstring
-        if (inchar == '\r') {                               // if the incoming character is a <CR>
-            sensor_string_complete = true;                  // set the flag
+        if (inchar == '\r') {
+            sensor_string_complete = true;
+        } else {
+            sensorstring += inchar;   
         }
     }
 
