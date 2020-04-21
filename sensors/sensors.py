@@ -22,7 +22,7 @@ class SerialPort:
 
         # Read sensor data
         rawInput = self.serial.readline()
-        self.log("Raw Input: " + rawInput)
+        self.log("Raw Input: " + str(rawInput))
         data = self.parseFromArduino(rawInput)
         output = ""
         for i in range(len(data)):
