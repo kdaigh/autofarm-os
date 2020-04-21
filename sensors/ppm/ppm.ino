@@ -41,8 +41,8 @@ void loop() {
         sensorstring = "";                                  // clear the string
         sensor_string_complete = false;                     // reset the flag used to tell if we have received a completed string from the Atlas Scientific product
         
-        // Wait for 5 seconds
-        delay(5000);
+        // Wait for 3 seconds
+        delay(3000);
     }
 }
 
