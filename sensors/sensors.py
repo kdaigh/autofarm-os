@@ -38,6 +38,7 @@ class SerialPort:
     def parseFromArduino(self, rawInput):
         # Decode input from Arduino
         decodedInput = rawInput.decode('utf-8').strip('\r\n')
+        self.log("Input: " + decodedInput)
 
         # Divide data; Remove leading and trailing characters
         data = decodedInput.split(',')
