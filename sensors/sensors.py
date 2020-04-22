@@ -136,8 +136,8 @@ class Logger:
 
 if __name__ == '__main__':
     logger = Logger()
-    label = True
-    for _ in range(0, 20):
+    header = True
+    for _ in range(0, 3):
         values = logger.collectData()
         logger.printData(values, header)
         label = False
