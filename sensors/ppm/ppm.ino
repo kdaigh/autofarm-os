@@ -8,6 +8,7 @@
 */
 
 #include <SoftwareSerial.h> 
+#include <string.h>
 #define serialPi Serial
 #define rx 2                                          // Define what pin rx is going to be
 #define tx 3                                          // Define what pin tx is going to be
@@ -64,7 +65,7 @@ void print_EC_data(void) {
 
     // Validate EC variable
     char ec[5];   
-    strncpy(ec, 0, 4);
+    strncpy(ec, EC, 4);
     ec[4] = 0;
 
     // Send  data to Raspberry Pi
