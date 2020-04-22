@@ -25,7 +25,6 @@ class SerialPort:
 
         # Read sensor data
         rawInput = self.serial.readline()
-        self.log("Raw Input: " + str(rawInput))
         data = self.parseFromArduino(rawInput)
         output = ""
         for i in range(len(data)):
@@ -39,7 +38,6 @@ class SerialPort:
     def parseFromArduino(self, rawInput):
         # Decode input from Arduino
         decodedInput = rawInput.decode('utf-8').strip('\r\n')
-        # self.log("Input: " + decodedInput)
 
         # Divide data; Remove leading and trailing characters
         data = decodedInput.split(',')
@@ -95,7 +93,7 @@ class Logger:
         return values
 
     # Outputs data in a CSV-style string
-    def printData(self, values, label):
+    def printData(self, values, header):
         self.log("\nLine added to file: ")
         counter = 1
         labelString = ""
@@ -111,12 +109,14 @@ class Logger:
                 dataString += "\n"
             counter = counter + 1
 
-        with open('data/data.csv', 'w', newline='') as file:
-            if label == True:
+        if header == True:
+            with open('data/data.csv', 'w') as file:
                 file.write(labelString)
                 self.log(labelString)
-            file.write(dataString)
-            self.log(dataString)
+        else:
+            with open('data/data.csv', 'a') as file:
+                file.write(dataString)
+                self.log(dataString)
 
     def generateDummyValue(self, min, max):
         # Generate random float between 0 and 1
@@ -139,6 +139,6 @@ if __name__ == '__main__':
     label = True
     for _ in range(0, 20):
         values = logger.collectData()
-        logger.printData(values, label)
+        logger.printData(values, header)
         label = False
 
