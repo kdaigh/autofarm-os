@@ -3,6 +3,9 @@ import string
 import time
 import csv
 from datetime import datetime
+from random import seed
+from random import random
+from random import randint
 
 # @class SerialPort
 # Represents a serial port of the Raspberry Pi
@@ -85,6 +88,9 @@ class Logger:
                 value = pair[1].strip(' ')
                 values[label] = value
             ser.closePort()
+
+        # Add dummy value for par sensor
+        values['par'] = self.generateDummyValue(1200, 1275)
             
         return values
 
@@ -99,6 +105,17 @@ class Logger:
             else:
                 print()
             counter = counter + 1
+
+    def generateDummyValue(self, min, max):
+        # Generate random float between 0 and 1
+        seed(1)
+        floatNum = random()
+
+        # Generate random integer in provided range
+        intNum = randint(min, max)
+
+        return floatNum + intNum
+
 
     # Prints given message if debug is enabled
     def log(self, msg):
