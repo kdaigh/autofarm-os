@@ -141,5 +141,5 @@ if __name__ == '__main__':
     for _ in range(0, 3):
         values = logger.collectData()
         logger.printData(values, header)
-        label = False
+        header = False
 
