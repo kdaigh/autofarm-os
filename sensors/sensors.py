@@ -142,7 +142,7 @@ class Logger:
 if __name__ == '__main__':
     logger = Logger()
     header = True
-    for _ in range(0, 3):
+    for _ in range(0, 20):
         values = logger.collectData()
         logger.printData(values, header)
         header = False
