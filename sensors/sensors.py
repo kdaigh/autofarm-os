@@ -72,7 +72,9 @@ class Logger:
         values = {}
 
         # Get time stamp
-        values['datetime'] = str(datetime.now())
+        dt = datetime.now()
+        dtValue = dt.strftime("%Y-%m-%d %H:%M:%S")
+        values['datetime'] = dtValue
 
         # Get sensor data
         # NOTE: The use of [ARD1, ARD2, ...] requires use of the 10-usb-serial.rules configuration file
@@ -95,25 +97,27 @@ class Logger:
 
     # Outputs data in a CSV-style string
     def printData(self, values, header):
-        self.log("\nLine added to file: ")
+        self.log("\nLogged: ")
         counter = 1
         labelString = ""
         dataString = ""
         for label, value in values.items():
             labelString += label
             dataString += str(value)
-            if counter != len(values):
-                labelString += ", "
-                dataString += ", "
-            else:
+            if counter == len(values):
                 labelString += "\n"
                 dataString += "\n"
+            else:
+                labelString += ", "
+                dataString += ", "
             counter = counter + 1
 
         if header == True:
             with open('data/data.csv', 'w') as file:
                 file.write(labelString)
+                file.write(dataString)
                 self.log(labelString)
+                self.log(dataString)
         else:
             with open('data/data.csv', 'a') as file:
                 file.write(dataString)

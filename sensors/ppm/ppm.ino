@@ -64,23 +64,13 @@ void print_EC_data(void) {
     f_ec = atof(EC); 
 
     // Send  data to Raspberry Pi
-    String outputstring = "";
-    outputstring += "<EC = ";
-    outputstring += EC;
-    outputstring += ", TDS = ";
-    outputstring += TDS;
-    outputstring += ", SAL = ";
-    outputstring += SAL;
-    outputstring += ">";
-    serialPi.println(outputstring);
-
-    // serialPi.print("<EC = ");
-    // serialPi.print(f_ec, 2);
-    // serialPi.print(", TDS = ");
-    // serialPi.print(TDS);
-    // serialPi.print(", SAL = ");
-    // serialPi.print(SAL);
-    // serialPi.println(">");
+    serialPi.print("<EC = ");
+    serialPi.print(f_ec, 2);
+    serialPi.print(", TDS = ");
+    serialPi.print(TDS);
+    serialPi.print(", SAL = ");
+    serialPi.print(SAL);
+    serialPi.println(">");
 }
 
 
