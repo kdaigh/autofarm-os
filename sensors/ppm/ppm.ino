@@ -34,11 +34,11 @@ void loop() {
     }
 
     if (sensor_string_complete == true) {                   // if a string from the Atlas Scientific product has been received in its entirety
-        // if (isdigit(sensorstring[0]) == false) {            // if the first character in the string is a digit
-        //     serialPi.println(sensorstring);                 // send that string to the PC's serial monitor
-        // } else {                                            // if the first character in the string is NOT a digit
+        if (isdigit(sensorstring[0]) == false) {            // if the first character in the string is a digit
+            serialPi.println(sensorstring);                 // send that string to the PC's serial monitor
+        } else {                                            // if the first character in the string is NOT a digit
             print_EC_data();                                // then call this function 
-        // }
+        }
         sensorstring = "";                                  // clear the string
         sensor_string_complete = false;                     // reset the flag used to tell if we have received a completed string from the Atlas Scientific product
         
@@ -65,7 +65,7 @@ void print_EC_data(void) {
 
     // Send  data to Raspberry Pi
     serialPi.print("<EC = ");
-    serialPi.print(f_ec, 2);
+    serialPi.print(EC[:4]);
     serialPi.print(", TDS = ");
     serialPi.print(TDS);
     serialPi.print(", SAL = ");
