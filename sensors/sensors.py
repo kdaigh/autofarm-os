@@ -96,22 +96,27 @@ class Logger:
 
     # Outputs data in a CSV-style string
     def printData(self, values, label):
-        print("\nLine added to file: ")
+        self.log("\nLine added to file: ")
         counter = 1
         labelString = ""
         dataString = ""
         for label, value in values.items():
             labelString += label
-            dataString += value
+            dataString += str(value)
             if counter != len(values):
                 labelString += ", "
                 dataString += ", "
+            else:
+                labelString += "\n"
+                dataString += "\n"
             counter = counter + 1
 
-        if label == True:
-            print(labelString)
-            
-        print(dataString)
+        with open('data/data.csv', 'w', newline='') as file:
+            if label == True:
+                file.write(labelString)
+                self.log(labelString)
+            file.write(dataString)
+            self.log(dataString)
 
     def generateDummyValue(self, min, max):
         # Generate random float between 0 and 1
