@@ -13,9 +13,6 @@ void setup() {
 
 void loop() {
     // Read sensor data
-    // int sensorData = DHT.read11(sensorPin);
-    // float temperature = DHT.temperature;
-    // float humidity = DHT.humidity;
     int liquid_level = digitalRead(sensorPin);
 
     // Send  data to Raspberry Pi
