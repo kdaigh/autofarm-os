@@ -61,11 +61,15 @@ void print_EC_data(void) {
     TDS = strtok(NULL, ",");
     SAL = strtok(NULL, ",");
     GRAV = strtok(NULL, ",");
-    f_ec = atof(EC); 
+
+    // Validate EC variable
+    char ec[5];   
+    strncpy(ec, 0, 4);
+    ec[4] = 0;
 
     // Send  data to Raspberry Pi
     serialPi.print("<EC = ");
-    serialPi.print(EC[:4]);
+    serialPi.print(ec);
     serialPi.print(", TDS = ");
     serialPi.print(TDS);
     serialPi.print(", SAL = ");
