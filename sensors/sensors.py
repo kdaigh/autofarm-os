@@ -39,7 +39,7 @@ class SerialPort:
     def parseFromArduino(self, rawInput):
         # Decode input from Arduino
         decodedInput = rawInput.decode('utf-8').strip('\r\n')
-        self.log("Input: " + decodedInput)
+        # self.log("Input: " + decodedInput)
 
         # Divide data; Remove leading and trailing characters
         data = decodedInput.split(',')
@@ -95,16 +95,23 @@ class Logger:
         return values
 
     # Outputs data in a CSV-style string
-    def printData(self, values):
+    def printData(self, values, label):
         print("\nLine added to file: ")
         counter = 1
+        labelString = ""
+        dataString = ""
         for label, value in values.items():
-            print(value, end='')
+            labelString += label
+            dataString += value
             if counter != len(values):
-                print(', ', end='')
-            else:
-                print()
+                labelString += ", "
+                dataString += ", "
             counter = counter + 1
+
+        if label == True:
+            print(labelString)
+            
+        print(dataString)
 
     def generateDummyValue(self, min, max):
         # Generate random float between 0 and 1
@@ -124,6 +131,9 @@ class Logger:
 
 if __name__ == '__main__':
     logger = Logger()
-    values = logger.collectData()
-    logger.printData(values)
+    label = True
+    for _ in range(0, 20):
+        values = logger.collectData()
+        logger.printData(values, label)
+        label = False
 
