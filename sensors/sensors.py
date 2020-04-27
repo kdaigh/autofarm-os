@@ -2,6 +2,8 @@ import serial
 import string
 import time
 import csv
+import time
+from AutoFarmGUI import AutoFarmGUI
 from datetime import datetime
 from random import seed
 from random import random
@@ -142,8 +144,20 @@ class Logger:
 if __name__ == '__main__':
     logger = Logger()
     header = True
-    for _ in range(0, 20):
+    x = AutoFarmGUI()
+    x.setup()
+    
+    for _ in range(0, 2):
         values = logger.collectData()
         logger.printData(values, header)
         header = False
+        x.configureTemp("Temperature: " + values['temperature'])
+        x.configurepH("pH: " + values['ph'])
+        x.configureHumidity("Humidity: " + values['humidity'])
+        x.configureDateTime("Date/Time: " + values['datetime'])
 
+        x.after(1000, x.quit)
+        x.run()
+        
+       
+    
