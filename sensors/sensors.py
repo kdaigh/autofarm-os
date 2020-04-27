@@ -156,7 +156,7 @@ if __name__ == '__main__':
         x.configurePPM("PPM: " + str(ppm))
         x.configureTemp("Temperature: " + values['temperature'])
         x.configurepH("pH: " + values['ph'])
-        x.configurepH("Wavelength: " + values['par'])
+        x.configurepH("Wavelength: " + str(values['par']))
         x.configureHumidity("Humidity: " + values['humidity'])
         x.configureDateTime("Date/Time: " + values['datetime'])
 
