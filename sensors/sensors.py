@@ -153,7 +153,7 @@ if __name__ == '__main__':
         logger.printData(values, header)
         header = False
         ppm = (int(values['EC']) * 1000) / 2
-        x.configurePPM("PPM: " + ppm)
+        x.configurePPM("PPM: " + str(ppm))
         x.configureTemp("Temperature: " + values['temperature'])
         x.configurepH("pH: " + values['ph'])
         x.configurepH("Wavelength: " + values['par'])
