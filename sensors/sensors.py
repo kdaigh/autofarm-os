@@ -148,11 +148,14 @@ if __name__ == '__main__':
     x.setup()
     
     for _ in range(0, 10):
+        ppm = (values['EC'] * 1000) / 2
         values = logger.collectData()
         logger.printData(values, header)
         header = False
+        x.configurePPM("PPM: " + ppm)
         x.configureTemp("Temperature: " + values['temperature'])
         x.configurepH("pH: " + values['ph'])
+        x.configurepH("Wavelength: " + values['par'])
         x.configureHumidity("Humidity: " + values['humidity'])
         x.configureDateTime("Date/Time: " + values['datetime'])
 
