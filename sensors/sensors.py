@@ -147,7 +147,7 @@ if __name__ == '__main__':
     x = AutoFarmGUI()
     x.setup()
     
-    for _ in range(0, 2):
+    for _ in range(0, 10):
         values = logger.collectData()
         logger.printData(values, header)
         header = False
