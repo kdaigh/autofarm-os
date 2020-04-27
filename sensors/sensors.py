@@ -3,7 +3,7 @@ import string
 import time
 import csv
 import time
-from AutoFarmGUI import AutoFarmGUI
+from gui import AutoFarmGUI
 from datetime import datetime
 from random import seed
 from random import random
